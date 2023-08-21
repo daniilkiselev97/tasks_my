@@ -1,16 +1,16 @@
 function isValid(s) {
-    const bracket = ['{', '(', '[', ']', ')', '}'];
-    s = s.split('').filter((char) => {
-        return bracket.includes(char) && char;
-    }).join('')
     let stack = [];
-    let brackets = {
-        ')': '(',
-        '}': '{',
-        ']': '[',
-    };
     for (let i = 0; i < s.length; i++) {
         const current = s[i];
+        if (
+            current !== '{' ||
+            current !== '(' ||
+            current !== '[' ||
+            current !== ']' ||
+            current !== ')' ||
+            current !== '}'
+        )
+            continue;
         if (isClosedBracket(current)) {
             if (brackets[current] !== stack.pop()) return false;
         } else {
@@ -22,4 +22,4 @@ function isValid(s) {
 function isClosedBracket(ch) {
     return ['}', ')', ']'].indexOf(ch) > -1;
 }
-console.log(isValid('({[vb]}){v}(g)'));
+console.log(isValid('m({[vb]}){v}(g)'));
